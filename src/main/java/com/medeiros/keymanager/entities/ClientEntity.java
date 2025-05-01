@@ -1,9 +1,7 @@
 package com.medeiros.keymanager.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -26,5 +24,5 @@ public class ClientEntity {
     private String password;
 
     @OneToMany( mappedBy = "clientEntity",cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY) //Um client relacionado a várias colunas
-    private List<AccountsEntity> clientAccounts;
+    private List<AccountEntity> clientAccounts;
 }
