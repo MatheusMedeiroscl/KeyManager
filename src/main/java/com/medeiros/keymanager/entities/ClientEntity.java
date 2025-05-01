@@ -15,7 +15,7 @@ public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cliente_id", nullable = false)
-    private Long clienteID;
+    private Long id;
 
     @Column(name = "login", nullable = false)
     private String login;
@@ -23,6 +23,6 @@ public class ClientEntity {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany( mappedBy = "clientEntity",cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY) //Um client relacionado a várias colunas
+    @OneToMany( mappedBy = "client",cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY) //Um client relacionado a várias colunas
     private List<AccountEntity> clientAccounts;
 }

@@ -28,6 +28,6 @@ public class AccountEntity {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private ClientEntity clientEntity;
+    private ClientEntity client;
 
 }

@@ -22,7 +22,7 @@ public class AccountService {
     };
 
     public List<AccountEntity> findByClient(Long id){
-        return repository.findByClientID(id);
+        return repository.findByClientId(id);
     }
 
     public AccountEntity findByName(String name){

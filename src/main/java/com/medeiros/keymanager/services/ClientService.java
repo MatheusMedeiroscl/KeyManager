@@ -26,19 +26,19 @@ public class ClientService {
     }
 
     public ClientEntity createClient(ClientEntity newClient){
-        newClient.setClienteID(null);
+        newClient.setId(null);
         newClient.setPassword(encoder.encode(newClient.getPassword()));
         return repository.save(newClient);
     }
 
     public ClientEntity updateClient(ClientEntity updatedClient){
-        ClientEntity client = findById(updatedClient.getClienteID());
+        ClientEntity client = findById(updatedClient.getId());
 
         if (updatedClient.getLogin() != null){
             client.setLogin(updatedClient.getLogin());
         };
         if (updatedClient.getPassword() != null){
-            client.setPassword(updatedClient.getPassword());
+            client.setPassword(encoder.encode(updatedClient.getPassword()));
         };
 
         return repository.save(client);
