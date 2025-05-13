@@ -21,9 +21,6 @@ public class AccountService {
         ));
     };
 
-    public List<AccountEntity> findByClient(Long id){
-        return repository.findByClientId(id);
-    }
 
     public AccountEntity findByName(String name){
         return repository.findByWebName(name).orElseThrow(() -> new RuntimeException(
@@ -31,13 +28,13 @@ public class AccountService {
         ));
     }
     public AccountEntity createAccount(AccountEntity newAccount) {
-        newAccount.setAccountID(null);
+        newAccount.setId(null);
         return repository.save(newAccount);
     }
 
     public AccountEntity updateAccount(AccountEntity updatedAccount){
-       AccountEntity account = repository.findById(updatedAccount.getAccountID()).orElseThrow(() -> new RuntimeException(
-                "[ACCOUNT NOT FOUND, CAN`T UPDATADE DATA] ID = " + updatedAccount.getAccountID()));
+       AccountEntity account = repository.findById(updatedAccount.getId()).orElseThrow(() -> new RuntimeException(
+                "[ACCOUNT NOT FOUND, CAN`T UPDATADE DATA] ID = " + updatedAccount.getId()));
 
         if (updatedAccount.getWebName() != null){account.setWebName(updatedAccount.getWebName());}
         if (updatedAccount.getWebLink() != null){account.setWebLink(updatedAccount.getWebLink());}

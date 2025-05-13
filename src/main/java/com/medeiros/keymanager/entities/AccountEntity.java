@@ -1,5 +1,6 @@
 package com.medeiros.keymanager.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,7 @@ public class AccountEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long accountID;
+    private Long id;
 
     @Column(name = "web_name")
     private String webName;
@@ -28,6 +29,7 @@ public class AccountEntity {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @JsonBackReference //Eu sou a tabelaFilho, portanto não mostre os dados da tabela principal
     private ClientEntity client;
 
 }

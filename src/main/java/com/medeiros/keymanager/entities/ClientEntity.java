@@ -1,5 +1,6 @@
 package com.medeiros.keymanager.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import java.util.List;
 public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cliente_id", nullable = false)
+    @Column(name = "client_id", nullable = false)
     private Long id;
 
     @Column(name = "login", nullable = false)
@@ -24,5 +25,6 @@ public class ClientEntity {
     private String password;
 
     @OneToMany( mappedBy = "client",cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY) //Um client relacionado a várias colunas
+    @JsonManagedReference // eu sou a Tabala principal, portanto me mostre os dados da tabela filho
     private List<AccountEntity> clientAccounts;
 }

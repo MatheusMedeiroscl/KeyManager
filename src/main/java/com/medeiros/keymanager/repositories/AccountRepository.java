@@ -11,5 +11,4 @@ import java.util.Optional;
 public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
     public Optional<AccountEntity> findByWebName(String webName);
 
-    List<AccountEntity> findByClientId(Long clientId);
 }
