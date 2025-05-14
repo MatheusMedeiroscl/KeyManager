@@ -23,7 +23,12 @@ public class ClientController {
         return ResponseEntity.ok().body(client);
     }
 
-    @PostMapping
+    @GetMapping("/login/{login}")
+    public ResponseEntity<ClientEntity> findByLogin(@PathVariable String login){
+        ClientEntity client = this.service.findByLogin(login);
+        return ResponseEntity.ok().body(client);
+
+    }    @PostMapping
     public ResponseEntity<ClientEntity> create(@RequestBody ClientEntity newClient){
         this.service.createClient(newClient);
 
