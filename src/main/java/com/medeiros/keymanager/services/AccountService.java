@@ -40,6 +40,7 @@ public class AccountService {
         if (updatedAccount.getWebLink() != null){account.setWebLink(updatedAccount.getWebLink());}
         if (updatedAccount.getEmail() != null){account.setEmail(updatedAccount.getEmail());}
         if (updatedAccount.getPassword() != null){account.setPassword(updatedAccount.getPassword());}
+        account.setFavorite(updatedAccount.isFavorite());
 
         return repository.save(account);
     }

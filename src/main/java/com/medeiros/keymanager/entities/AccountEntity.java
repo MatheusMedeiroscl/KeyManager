@@ -27,6 +27,10 @@ public class AccountEntity {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "favorite")
+    private boolean favorite;
+
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     @JsonBackReference //Eu sou a tabelaFilho, portanto não mostre os dados da tabela principal
