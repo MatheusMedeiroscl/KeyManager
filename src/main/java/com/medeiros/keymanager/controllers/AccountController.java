@@ -37,12 +37,12 @@ public class AccountController {
         return  ResponseEntity.created(uri).build();
     }
 
-    @PutMapping("/{id}")
     public ResponseEntity<AccountEntity> update(@PathVariable Long id, @RequestBody AccountEntity updatedAccount){
         updatedAccount.setId(id);
-        this.service.updateAccount(updatedAccount);
-        return ResponseEntity.noContent().build();
+        AccountEntity updated = this.service.updateAccount(updatedAccount);
+        return ResponseEntity.ok(updated);
     }
+
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){

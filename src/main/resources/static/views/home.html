@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Sites</title>
+  <link rel="stylesheet" href="../styles/home.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+
+    <div class="card">
+
+      <div class="header">
+
+        <div class="user-info">
+          <div class="avatar"></div>
+          <span >Bem-vindo, <strong id="userName">[NOME DO USER]</strong></span>
+        </div>
+
+        <button id="btnCreate">+</button>
+
+      </div>
+
+
+      <div class="content">
+
+          <div id="columnFav">
+          <h3>Favoritos</h3>
+        </div>
+        <div class="divider"></div>
+        <div id="columnComum">
+          <h3>Outros</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--CARD PARA CRIAR NOVOS DADOS-->
+  <div id="cardCreate">
+        <label class="btnSair" onclick="exitCreate()">X</label>
+      <h1>Registrar nova conta</h1>
+
+      <form id="formCreate">
+        <label for="name">Nome do site</label> <br>
+        <input type="text" id="txtName"> 
+
+        <label for="link">Link do site:</label> <br>
+        <input type="text" id="txtLink"> 
+
+        <label for="email">Email registrado:</label> <br>
+        <input type="text" id="txtEmail"> 
+
+        <label for="password">Senha registrada:</label> <br>
+        <input type="text" id="txtPass"> 
+
+        <input type="submit" value="Criar"> 
+      </form>
+  </div>
+
+
+
+
+  <!--CARD DE ATUALIZAÇÃO DE DADOS-->
+  <div id="cardEdit">
+    <label class="btnSair" onclick="exitEdit()">X</label>
+      <h1>Atualizar dados</h1> 
+      
+      <form id="formEdit">
+        <label for="name">Nome do site</label> <br>
+        <input type="text" id="txtNameEdited"> 
+
+        <label for="link">Link do site:</label> <br>
+        <input type="text" id="txtLinkEdited"> 
+
+        <label for="email">Email registrado:</label> <br>
+        <input type="text" id="txtEmailEdited"> 
+
+        <label for="password">Senha registrada:</label> <br>
+        <input type="text" id="txtPassEdited"> 
+
+        <input type="submit"" value="AtualizarEdited"> 
+      </form>
+  </div>
+</body>
+
+
+<script src="../scripts/home/GetAll.js"></script>
+
+
+</html>
