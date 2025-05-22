@@ -37,6 +37,7 @@ public class AccountController {
         return  ResponseEntity.created(uri).build();
     }
 
+    @PatchMapping("/{id}")
     public ResponseEntity<AccountEntity> update(@PathVariable Long id, @RequestBody AccountEntity updatedAccount){
         updatedAccount.setId(id);
         AccountEntity updated = this.service.updateAccount(updatedAccount);

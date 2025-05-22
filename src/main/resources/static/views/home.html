@@ -37,10 +37,29 @@
     </div>
   </div>
 
+    <!--CARD DE DETALHES -->
+  <div id="viewDetails">
+    <label onclick="Sair()" class="btnSair">X</label>
+      <h1 id="dtlTitle"></h1> 
+
+        <label for="name">Nome do site:</label>
+        <p id="dtlName"></p>
+
+        <label for="link">Link do site:</label>
+        <p id="dtlLink"></p>
+
+        <label for="email">Email registrado:</label>
+        <p id="dtlEmail"></p>
+
+        <label for="password">Senha registrada:</label> 
+        <p id="dtlPass"></p>
+
+  </div>
+
 
   <!--CARD PARA CRIAR NOVOS DADOS-->
   <div id="cardCreate">
-        <label class="btnSair" onclick="exitCreate()">X</label>
+        <label class="btnSair">X</label>
       <h1>Registrar nova conta</h1>
 
       <form id="formCreate">
@@ -65,7 +84,7 @@
 
   <!--CARD DE ATUALIZAÇÃO DE DADOS-->
   <div id="cardEdit">
-    <label class="btnSair" onclick="exitEdit()">X</label>
+    <label class="btnSair" >X</label>
       <h1>Atualizar dados</h1> 
       
       <form id="formEdit">

@@ -99,7 +99,7 @@ h3 {
 }
 
 /* Card central */
-#cardCreate, #cardEdit {
+#cardCreate, #cardEdit, #viewDetails {
   display: none;
   position: absolute;
   top: 50%; 
@@ -164,4 +164,8 @@ h3 {
 
  display: flex;
  justify-content: end;
+}
+
+p{
+  padding-left: 1rem;
 }
