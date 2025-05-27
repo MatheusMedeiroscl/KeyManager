@@ -35,12 +35,14 @@ async function getAll(id) {
 
             let box = document.createElement('div');
             box.classList.add("site-box");
-            box.addEventListener("click", () =>{
-                viewDetails(account)
-            })
+       
 
             let title = document.createElement("h3");
             title.innerHTML = account.webName;
+            title.addEventListener("click", () =>{
+                viewDetails(account)
+            })
+
             box.appendChild(title);
 
             let btnFavorite = document.createElement("button")
@@ -51,6 +53,15 @@ async function getAll(id) {
                 actionFavorite(account.id, account.favorite);
             })
             box.appendChild(btnFavorite)
+
+            let btnDelete = document.createElement("button");
+            btnDelete.classList.add("btnDelete")
+            btnDelete.innerText = "DEL"
+
+            btnDelete.addEventListener("click", () =>{
+                actionDelete(account.id);
+            })
+            box.appendChild(btnDelete)
 
 
 
@@ -85,6 +96,8 @@ async function actionFavorite(accountId, isFavorite) {
     }
 }
 
+//Func de detalhar elementos do Card
+
 const cardDetails = document.getElementById("viewDetails");
 
 function viewDetails(account) {
@@ -97,8 +110,25 @@ function viewDetails(account) {
 
 }
 
+
+//Func de sair
 function Sair(){
   const card = event.target.closest("div"); 
        card.style.display = "none"
 
+}
+
+
+//Func de Dell
+async function actionDelete(id){
+    try{
+        const response = await fetch(`${accountURL}/${id}`,{
+            method: "DELETE"
+     })
+     window.location.reload()
+
+    }catch(erro){
+        console.error("ERRO NA REQUISIÇÃO DE DELETAR:", erro)
+
+    }
 }
