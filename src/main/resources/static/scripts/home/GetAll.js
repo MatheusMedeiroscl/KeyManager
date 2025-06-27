@@ -34,36 +34,59 @@ async function getAll(id) {
         client.clientAccounts.map((account) =>{
 
             let box = document.createElement('div');
-            box.classList.add("site-box");
-       
+            box.classList.add("siteBox");
 
-            let title = document.createElement("h3");
-            title.innerHTML = account.webName;
-            title.addEventListener("click", () =>{
+            let titleBox = document.createElement('div');
+            titleBox.classList.add("titleBox")
+            titleBox.addEventListener("click", () =>{
                 viewDetails(account)
             })
 
-            box.appendChild(title);
+            let btnBox = document.createElement('div');
+            btnBox.classList.add("btnBox")
+        
 
-            let btnFavorite = document.createElement("button")
+            box.appendChild(titleBox);
+            box.appendChild(btnBox);
+
+            let title = document.createElement("h3");
+            title.innerHTML = account.webName;
+            
+
+            titleBox.appendChild(title);
+
+            let btnFavorite = document.createElement("img")
             btnFavorite.classList.add("btnFavorite")
-            btnFavorite.innerText = "FAV"
+            
+            !account.favorite ? btnFavorite.src = "../styles/icons/NonStar.png" :btnFavorite.src = "../styles/icons/FavStar.png";
 
             btnFavorite.addEventListener("click", () =>{
                 actionFavorite(account.id, account.favorite);
             })
-            box.appendChild(btnFavorite)
+            btnBox.appendChild(btnFavorite)
 
-            let btnDelete = document.createElement("button");
-            btnDelete.classList.add("btnDelete")
-            btnDelete.innerText = "DEL"
+         
+            let btnDelete = document.createElement("img");
+            btnDelete.classList.add("btnDelete");
+            btnDelete.src = "../styles/icons/Delete.png"
 
             btnDelete.addEventListener("click", () =>{
                 actionDelete(account.id);
             })
-            box.appendChild(btnDelete)
 
+            btnBox.appendChild(btnDelete)
 
+            let btnCopy = document.createElement("img");
+            btnCopy.classList.add("btnCopy")
+            btnCopy.src = "../styles/icons/Copy.png"
+
+            btnCopy.addEventListener("click", () =>{
+              let copyPass = account.password;
+              navigator.clipboard.writeText(copyPass);
+              alert("Senha copiada")
+            })
+
+            btnBox.appendChild(btnCopy)
 
 
            !account.favorite ? comuns.appendChild(box) :favorites.appendChild(box);
@@ -97,7 +120,6 @@ async function actionFavorite(accountId, isFavorite) {
 }
 
 //Func de detalhar elementos do Card
-
 const cardDetails = document.getElementById("viewDetails");
 
 function viewDetails(account) {
@@ -129,6 +151,5 @@ async function actionDelete(id){
 
     }catch(erro){
         console.error("ERRO NA REQUISIÇÃO DE DELETAR:", erro)
-
     }
 }
