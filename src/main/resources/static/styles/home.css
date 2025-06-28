@@ -118,7 +118,7 @@ h3 {
 }
 
 /* Card central */
-#cardCreate, #cardEdit, #viewDetails {
+#cardCreate {
   display: none;
   position: absolute;
   top: 50%; 
@@ -133,12 +133,48 @@ h3 {
   color: white;
 }
 
+#cardEdit {
+  display: none;
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+
+  background-color: #1a1d13;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  color: white;
+}
+
+ #viewDetails {
+  display: none;
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+
+  background-color: #1a1d13;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  color: white;
+ }
+.dtlTitle {
+  font-weight: bolder;
+  font-size: 1.1rem;
+  color: #43ab9e;
+
+}
 #cardCreate h1,
-#cardEdit h1 {
+#cardEdit h1, #viewDetails h1 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 1.5em;
 }
+
 
 /* Formulário */
 #formCreate, #formEdit {
@@ -190,3 +226,7 @@ p{
 }
 
 
+#dtlButtons{
+  width: 100%;
+  text-align: right;
+} 

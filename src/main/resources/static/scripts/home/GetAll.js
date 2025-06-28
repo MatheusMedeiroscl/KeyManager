@@ -6,12 +6,9 @@ const params = new URLSearchParams(window.location.search);
 const clientId = params.get('id');
 const clientLogin = params.get('login')
 
-
 let userName = document.getElementById("userName");
 userName.innerHTML = clientLogin;
-
-
-
+let selectedAccount = null;
 //Colunas de obj
 const favorites = document.getElementById("columnFav");
 const comuns = document.getElementById("columnComum");
@@ -119,19 +116,88 @@ async function actionFavorite(accountId, isFavorite) {
     }
 }
 
-//Func de detalhar elementos do Card
-const cardDetails = document.getElementById("viewDetails");
 
+const cardDetails = document.getElementById("viewDetails");
+const cardUpdate = document.getElementById("cardEdit")
 function viewDetails(account) {
    cardDetails.style.display = "block"
+
+   selectedAccount = account
 
    let name = document.getElementById("dtlName").innerText = account.webName;
    let link = document.getElementById("dtlLink").innerText = account.webLink;
    let email = document.getElementById("dtlEmail").innerText = account.email;
    let pass = document.getElementById("dtlPass").innerText = account.password;
 
+   let btnCopy = document.getElementById("btnCopy");
+            btnCopy.addEventListener("click", () =>{
+              let copyPass = account.password;
+              navigator.clipboard.writeText(copyPass);
+              alert("Senha copiada")
+            })
+    
+    let btnEdit = document.getElementById("btnEdit");
+            btnEdit.addEventListener("click", () =>{
+                cardDetails.style.display = "none"
+
+                let name = document.getElementById("txtNameEdited").value = selectedAccount.webName;
+                let link = document.getElementById("txtLinkEdited").value = selectedAccount.webLink;
+                let email = document.getElementById("txtEmailEdited").value = selectedAccount.email;
+                let pass = document.getElementById("txtPassEdited").value = selectedAccount.password;
+
+                cardUpdate.style.display = "block"
+            })
 }
 
+const updateForm = document.getElementById("formEdit").addEventListener("submit", (e) =>{
+    e.preventDefault();
+
+     let name = document.getElementById("txtNameEdited").value
+    let link = document.getElementById("txtLinkEdited").value
+    let email = document.getElementById("txtEmailEdited").value
+    let pass = document.getElementById("txtPassEdited").value
+
+
+    const accountEdited = {
+        webName: name,
+        webLink: link,
+        email: email,
+        password: pass,
+        favorite: selectedAccount.favorite
+    }
+    update(accountEdited)
+    cardUpdate.style.display = "none"
+    window.location.reload()
+
+
+
+})
+
+async function update(account) {
+          const response = await fetch(`${accountURL}/${selectedAccount.id}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json' // Tipo de conteúdo sendo enviado
+            }, 
+            body: JSON.stringify(account)
+          })
+        .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao atualizar a conta');
+        }
+        return response.json();
+        })
+        .then(data => {
+        console.log('Conta atualizada com sucesso:', data);
+        })
+        .catch(error => {
+        console.error('Erro na atualização:', error);
+        });
+         
+
+        alert("Conta Atualizada")
+   
+    }
 
 //Func de sair
 function Sair(){
@@ -139,7 +205,6 @@ function Sair(){
        card.style.display = "none"
 
 }
-
 
 //Func de Dell
 async function actionDelete(id){
@@ -153,3 +218,6 @@ async function actionDelete(id){
         console.error("ERRO NA REQUISIÇÃO DE DELETAR:", erro)
     }
 }
+
+
+

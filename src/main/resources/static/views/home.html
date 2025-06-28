@@ -40,20 +40,26 @@
     <!--CARD DE DETALHES -->
   <div id="viewDetails">
     <label onclick="Sair()" class="btnSair">X</label>
-      <h1 id="dtlTitle"></h1> 
+      <h1 id="dtlName"></h1> 
 
-        <label for="name">Nome do site:</label>
-        <p id="dtlName"></p>
+        <p>
+          <label class="dtlTitle">Link:</label>  
+          <a id="dtlLink"></a>
+        </p> 
+        <p>
+          <label class="dtlTitle">Email:</label>  
+          <label id="dtlEmail"></label>
+        </p>
 
-        <label for="link">Link do site:</label>
-        <p id="dtlLink"></p>
+        <p>
+          <label class="dtlTitle">Senha:</label>
+        <label id="dtlPass"></label>
+        </p> 
 
-        <label for="email">Email registrado:</label>
-        <p id="dtlEmail"></p>
-
-        <label for="password">Senha registrada:</label> 
-        <p id="dtlPass"></p>
-
+        <section id="dtlButtons">
+          <img src="../styles/icons/Copy.png" id="btnCopy">
+          <img src="../styles/icons/Edit.png" id="btnEdit">
+        </section>
   </div>
 
 
@@ -79,8 +85,7 @@
       </form>
   </div>
 
-
-
+  
 
   <!--CARD DE ATUALIZAÇÃO DE DADOS-->
   <div id="cardEdit">
@@ -100,7 +105,7 @@
         <label for="password">Senha registrada:</label> <br>
         <input type="text" id="txtPassEdited"> 
 
-        <input type="submit"" value="AtualizarEdited"> 
+        <input type="submit" value="Atualizar"> 
       </form>
   </div>
 </body>
