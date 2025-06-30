@@ -199,6 +199,62 @@ async function update(account) {
    
     }
 
+
+//Func de criar 
+const btnAccessCreate = document.getElementById("btnCreate")
+const cardCreate = document.getElementById("cardCreate")
+btnAccessCreate.addEventListener("click", () =>{
+    cardCreate.style.display = "block"
+
+    const createForm = document.getElementById("formCreate").addEventListener("submit", (e) =>{
+        e.preventDefault()
+
+        let name = document.getElementById("txtName").value
+        let link = document.getElementById("txtLink").value
+        let email = document.getElementById("txtEmail").value
+        let pass = document.getElementById("txtPass").value
+
+        const newAccount = {
+            client: {
+                id: clientId // aqui você usa a variável com o valor do ID
+            },
+            webName: name,
+            webLink: link,
+            email: email,
+            password: pass,
+            favorite: false
+         }
+        create(newAccount)
+        cardCreate.style.display = "none"
+        window.location.reload()
+    })
+
+})
+
+async function create(account) {
+
+    try{
+     const response = await fetch(accountURL, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json' 
+            }, 
+            body: JSON.stringify(account)
+          })
+
+          if(!response.ok){
+              throw new Error(`ERRO AO CRIAR CONTA: ${response.status} - ${response.statusText}`);
+          }
+
+          alert ("DADOS CRIADOS COM SUCESSO!")
+    } catch (error) {
+            console.error("ERRO EM FAZER A REQ DE CRIAR:", error);
+
+    }
+}
+
+
+
 //Func de sair
 function Sair(){
   const card = event.target.closest("div"); 
