@@ -52,3 +52,9 @@ O front-end foi construído de forma leve e funcional, com o foco em exibir e ma
 1. **Clone o repositório:**
    ```bash
    git clone https://github.com/MatheusMedeiroscl/KeyManager.git
+2. **Execute o projeto:**
+   ```bash
+   git clone https://github.com/MatheusMedeiroscl/KeyManager.git
+3. **Acesse o Front end:**
+   
+   https://matheusmedeiroscl.github.io/Front_KeyManager/static/views/access.html
