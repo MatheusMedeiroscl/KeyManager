@@ -57,4 +57,4 @@ O front-end foi construído de forma leve e funcional, com o foco em exibir e ma
    git clone https://github.com/MatheusMedeiroscl/KeyManager.git
 3. **Acesse o Front end:**
    
-   https://matheusmedeiroscl.github.io/Front_KeyManager/static/views/access.html
+   [https://matheusmedeiroscl.github.io/Front_KeyManager/static/views/access.html](https://matheusmedeiroscl.github.io/KeyManager/src/main/resources/static/views/access.html)
