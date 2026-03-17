@@ -2,7 +2,7 @@ package com.medeiros.keymanager.controllers;
 
 
 import com.medeiros.keymanager.entities.DataEntity;
-import com.medeiros.keymanager.services.AccountService;
+import com.medeiros.keymanager.services.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +15,7 @@ import java.net.URI;
 public class AccountController {
 
     @Autowired
-    private AccountService service;
+    private DataService service;
 
     @GetMapping("/{id}")
     public ResponseEntity<DataEntity> findById(@PathVariable Long id){

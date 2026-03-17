@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Getter
@@ -17,7 +18,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -33,4 +34,12 @@ public class UserEntity {
     @OneToMany( mappedBy = "user",cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JsonManagedReference // Mostra os dados da table pai para a table filho
     private List<DataEntity> userData;
+
+
+    public UserEntity(UserRequestDTO dto, String password){
+        this.email = dto.email();
+        this.name = dto.name();
+        this.password = password;
+    }
+
 }

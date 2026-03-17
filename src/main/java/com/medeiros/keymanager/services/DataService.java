@@ -1,15 +1,15 @@
 package com.medeiros.keymanager.services;
 
 import com.medeiros.keymanager.entities.DataEntity;
-import com.medeiros.keymanager.repositories.AccountRepository;
+import com.medeiros.keymanager.repositories.DataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AccountService {
+public class DataService {
 
     @Autowired
-    private AccountRepository repository;
+    private DataRepository repository;
 
     public DataEntity findById(Long id){
         return repository.findById(id).orElseThrow(() -> new RuntimeException(

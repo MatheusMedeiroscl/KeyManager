@@ -1,7 +1,7 @@
 package com.medeiros.keymanager.controllers;
 
 import com.medeiros.keymanager.entities.UserEntity;
-import com.medeiros.keymanager.services.ClientService;
+import com.medeiros.keymanager.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import java.net.URI;
 public class ClientController {
 
     @Autowired
-    private  ClientService service;
+    private UserService service;
 
 
     @GetMapping("/{id}")
