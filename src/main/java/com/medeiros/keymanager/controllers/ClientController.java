@@ -1,6 +1,6 @@
 package com.medeiros.keymanager.controllers;
 
-import com.medeiros.keymanager.entities.ClientEntity;
+import com.medeiros.keymanager.entities.UserEntity;
 import com.medeiros.keymanager.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,18 +18,18 @@ public class ClientController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClientEntity> findById(@PathVariable Long id){
-        ClientEntity client = this.service.findById(id);
+    public ResponseEntity<UserEntity> findById(@PathVariable Long id){
+        UserEntity client = this.service.findById(id);
         return ResponseEntity.ok().body(client);
     }
 
     @GetMapping("/login/{login}")
-    public ResponseEntity<ClientEntity> findByLogin(@PathVariable String login){
-        ClientEntity client = this.service.findByLogin(login);
+    public ResponseEntity<UserEntity> findByLogin(@PathVariable String login){
+        UserEntity client = this.service.findByLogin(login);
         return ResponseEntity.ok().body(client);
 
     }    @PostMapping
-    public ResponseEntity<ClientEntity> create(@RequestBody ClientEntity newClient){
+    public ResponseEntity<UserEntity> create(@RequestBody UserEntity newClient){
         this.service.createClient(newClient);
 
         // Monta a URI do recurso recém- criado  para retornar no cabeçalho 'Location' da resposta 201
@@ -40,7 +40,7 @@ public class ClientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable Long id, @RequestBody ClientEntity updatedClient){
+    public ResponseEntity update(@PathVariable Long id, @RequestBody UserEntity updatedClient){
         updatedClient.setId(id);
         this.service.updateClient(updatedClient);
         return ResponseEntity.noContent().build();

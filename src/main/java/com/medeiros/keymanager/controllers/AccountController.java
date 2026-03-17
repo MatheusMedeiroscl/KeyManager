@@ -1,16 +1,14 @@
 package com.medeiros.keymanager.controllers;
 
 
-import com.medeiros.keymanager.entities.AccountEntity;
+import com.medeiros.keymanager.entities.DataEntity;
 import com.medeiros.keymanager.services.AccountService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/account")
@@ -20,14 +18,14 @@ public class AccountController {
     private AccountService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<AccountEntity> findById(@PathVariable Long id){
-        AccountEntity account = this.service.findById(id);
+    public ResponseEntity<DataEntity> findById(@PathVariable Long id){
+        DataEntity account = this.service.findById(id);
         return ResponseEntity.ok().body(account);
     }
 
 
     @PostMapping
-    public ResponseEntity<AccountEntity> create(@RequestBody AccountEntity newAccount){
+    public ResponseEntity<DataEntity> create(@RequestBody DataEntity newAccount){
         this.service.createAccount(newAccount);
 
         // Monta a URI do recurso recém- criado  para retornar no cabeçalho 'Location' da resposta 201
@@ -38,9 +36,9 @@ public class AccountController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<AccountEntity> update(@PathVariable Long id, @RequestBody AccountEntity updatedAccount){
+    public ResponseEntity<DataEntity> update(@PathVariable Long id, @RequestBody DataEntity updatedAccount){
         updatedAccount.setId(id);
-        AccountEntity updated = this.service.updateAccount(updatedAccount);
+        DataEntity updated = this.service.updateAccount(updatedAccount);
         return ResponseEntity.ok(updated);
     }
 

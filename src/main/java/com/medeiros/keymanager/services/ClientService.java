@@ -1,6 +1,6 @@
 package com.medeiros.keymanager.services;
 
-import com.medeiros.keymanager.entities.ClientEntity;
+import com.medeiros.keymanager.entities.UserEntity;
 import com.medeiros.keymanager.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,26 +13,26 @@ public class ClientService {
     @Autowired
     private PasswordEncoder encoder;
 
-    public ClientEntity findById(Long id){
+    public UserEntity findById(Long id){
         return repository.findById(id).orElseThrow(() -> new RuntimeException(
             "[CLIENT NOT FOUND] ID = " + id
         ));
     }
 
-    public ClientEntity findByLogin(String login){
+    public UserEntity findByLogin(String login){
         return repository.findByLogin(login).orElseThrow(() -> new RuntimeException(
                 "[CLIENT NOT FOUND] LOGIN = " + login
         ));
     }
 
-    public ClientEntity createClient(ClientEntity newClient){
+    public UserEntity createClient(UserEntity newClient){
         newClient.setId(null);
         newClient.setPassword(encoder.encode(newClient.getPassword()));
         return repository.save(newClient);
     }
 
-    public ClientEntity updateClient(ClientEntity updatedClient){
-        ClientEntity client = findById(updatedClient.getId());
+    public UserEntity updateClient(UserEntity updatedClient){
+        UserEntity client = findById(updatedClient.getId());
 
         if (updatedClient.getLogin() != null){
             client.setLogin(updatedClient.getLogin());
