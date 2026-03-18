@@ -1,47 +1,57 @@
 package com.medeiros.keymanager.services;
 
 import com.medeiros.keymanager.entities.DataEntity;
+import com.medeiros.keymanager.entities.DataRequestDTO;
+import com.medeiros.keymanager.entities.DataResponseDTO;
 import com.medeiros.keymanager.repositories.DataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class DataService {
 
-    @Autowired
-    private DataRepository repository;
+    private final DataRepository repository;
 
-    public DataEntity findById(Long id){
-        return repository.findById(id).orElseThrow(() -> new RuntimeException(
-                "[ACCOUNT NOT FOUND] ID = " + id
+    public DataService(DataRepository repository) {
+        this.repository = repository;
+    }
+
+    public DataResponseDTO findById(DataRequestDTO dto){
+        UUID id = dto.id();
+
+        DataEntity data = repository.findById(id).orElseThrow(() -> new RuntimeException(
+                "[DATA NOT FOUNDED]: ID"
         ));
+
+        return new DataResponseDTO(data);
     };
-
-
-    public DataEntity findByName(String name){
-        return repository.findByWebName(name).orElseThrow(() -> new RuntimeException(
-                "[ACCOUNT NOT FOUND] NAME = " + name
-        ));
-    }
-    public DataEntity createAccount(DataEntity newAccount) {
-        newAccount.setId(null);
-        return repository.save(newAccount);
+    public DataResponseDTO create(DataRequestDTO dto) {
+        DataEntity data = new DataEntity(dto);
+        return new DataResponseDTO(data);
     }
 
-    public DataEntity updateAccount(DataEntity updatedAccount){
-       DataEntity account = repository.findById(updatedAccount.getId()).orElseThrow(() -> new RuntimeException(
-                "[ACCOUNT NOT FOUND, CAN`T UPDATADE DATA] ID = " + updatedAccount.getId()));
 
-        if (updatedAccount.getWebName() != null){account.setWebName(updatedAccount.getWebName());}
-        if (updatedAccount.getWebLink() != null){account.setWebLink(updatedAccount.getWebLink());}
-        if (updatedAccount.getEmail() != null){account.setEmail(updatedAccount.getEmail());}
-        if (updatedAccount.getPassword() != null){account.setPassword(updatedAccount.getPassword());}
-        account.setFavorite(updatedAccount.isFavorite());
 
-        return repository.save(account);
-    }
+        public DataResponseDTO update(DataRequestDTO dto){
+            UUID id = dto.id();
+            DataEntity data = repository.findById(id).orElseThrow(() -> new RuntimeException(
+                    "[DATA NOT FOUNDED]: ID UPDATE"));
 
-    public void delete(Long id){
+            if (dto.websiteName() != null){data.setWebsiteName(dto.websiteName());}
+            if (dto.websiteUrl() != null){data.setWebsiteUrl(dto.websiteUrl());}
+            if (dto.registeredEmail() != null){data.setRegisteredEmail(dto.registeredEmail());}
+            if (dto.registeredPassword() != null){data.setRegisteredPassword(dto.registeredPassword());}
+
+            data.setFavorite(!data.isFavorite());
+            repository.save(data);
+
+            return new DataResponseDTO(data);
+        }
+
+    public void delete(DataRequestDTO dto){
+        UUID id = dto.id();
         repository.deleteById(id);
     }
 

@@ -28,12 +28,24 @@ public class DataEntity {
     private String registeredPassword;
 
     @Column(name = "favorite")
-    private boolean favorite;
+    private Boolean favorite;
+
+    public boolean isFavorite() {
+        return favorite;
+    }
 
 
     @ManyToOne
     @JoinColumn(name = "id")
     @JsonBackReference //tranfere os dados da table filho para a table pai
     private UserEntity user;
+
+    public DataEntity(DataRequestDTO dto){
+        this.websiteName = dto.websiteName();
+        this.websiteUrl = dto.websiteUrl();
+        this.registeredEmail = dto.registeredEmail();
+        this.registeredPassword = dto.registeredPassword();
+        this.favorite = false;
+    }
 
 }
