@@ -1,9 +1,12 @@
-package com.medeiros.keymanager.entities;
+package com.medeiros.keymanager.entities.Data;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.medeiros.keymanager.entities.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -11,9 +14,8 @@ import lombok.Setter;
 @Table(name = "data")
 public class DataEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @GeneratedValue
+    private UUID id;
 
     @Column(name = "website_name")
     private String websiteName;
@@ -36,7 +38,7 @@ public class DataEntity {
 
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_user")
     @JsonBackReference //tranfere os dados da table filho para a table pai
     private UserEntity user;
 

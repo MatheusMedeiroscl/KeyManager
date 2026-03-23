@@ -1,24 +1,26 @@
-package com.medeiros.keymanager.entities;
+package com.medeiros.keymanager.entities.user;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.medeiros.keymanager.entities.Data.DataEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.List;
-import java.util.UUID;
 
 
 @Getter
 @Setter
 @Entity
-@Table(name = "user")
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "users")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;

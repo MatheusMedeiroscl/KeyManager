@@ -1,8 +1,8 @@
 package com.medeiros.keymanager.services;
 
-import com.medeiros.keymanager.entities.UserEntity;
-import com.medeiros.keymanager.entities.UserRequestDTO;
-import com.medeiros.keymanager.entities.UserResponseDTO;
+import com.medeiros.keymanager.entities.user.UserEntity;
+import com.medeiros.keymanager.entities.user.UserRequestDTO;
+import com.medeiros.keymanager.entities.user.UserResponseDTO;
 import com.medeiros.keymanager.repositories.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,15 +12,14 @@ import java.util.UUID;
 @Service
 public class UserService {
     private final UserRepository repository;
-    private final BCryptPasswordEncoder encoder;
+    private final PasswordEncoder encoder;
 
-    public UserService(UserRepository repository, BCryptPasswordEncoder encoder) {
+    public UserService(UserRepository repository, PasswordEncoder encoder) {
         this.repository = repository;
         this.encoder = encoder;
     }
 
-    public UserResponseDTO findById(UserRequestDTO dto){
-        UUID id = dto.id();
+    public UserResponseDTO findById(Long id){
         UserEntity user = repository.findById(id).orElseThrow(() -> new RuntimeException(
                 "[USER NOT FOUND]: ID"
         ));
@@ -31,11 +30,13 @@ public class UserService {
         String encrypitPass = encoder.encode(dto.password());
         UserEntity user = new UserEntity(dto, encrypitPass);
 
+        this.repository.save(user);
+
         return new UserResponseDTO(user);
     }
 
-    public UserResponseDTO update(UserRequestDTO dto){
-        UserEntity user = repository.findById(dto.id()).orElseThrow(() -> new RuntimeException(
+    public UserResponseDTO update(UserRequestDTO dto, Long id){
+        UserEntity user = repository.findById(id).orElseThrow(() -> new RuntimeException(
                 "[USER NOT FOUND]: ID FOR UPDATE"
         ));
 
@@ -47,8 +48,7 @@ public class UserService {
         return new UserResponseDTO(user);
     };
 
-    public void deleteClient(UserRequestDTO dto){
-        UUID id = dto.id();
+    public void delete(Long id){
         repository.deleteById(id);
     };
 }

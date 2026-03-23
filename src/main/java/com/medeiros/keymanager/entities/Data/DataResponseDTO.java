@@ -1,4 +1,4 @@
-package com.medeiros.keymanager.entities;
+package com.medeiros.keymanager.entities.Data;
 
 public record DataResponseDTO(
         String websiteName,

@@ -1,4 +1,4 @@
-package com.medeiros.keymanager.entities;
+package com.medeiros.keymanager.entities.Data;
 
 import java.util.UUID;
 

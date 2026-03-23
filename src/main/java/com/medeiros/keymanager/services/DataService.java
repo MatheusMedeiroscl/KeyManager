@@ -1,10 +1,9 @@
 package com.medeiros.keymanager.services;
 
-import com.medeiros.keymanager.entities.DataEntity;
-import com.medeiros.keymanager.entities.DataRequestDTO;
-import com.medeiros.keymanager.entities.DataResponseDTO;
+import com.medeiros.keymanager.entities.Data.DataEntity;
+import com.medeiros.keymanager.entities.Data.DataRequestDTO;
+import com.medeiros.keymanager.entities.Data.DataResponseDTO;
 import com.medeiros.keymanager.repositories.DataRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
