@@ -20,7 +20,7 @@ public class UserController {
         return ResponseEntity.ok().body(user);
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<UserResponseDTO> create(@RequestBody UserRequestDTO dto){
         UserResponseDTO user = this.service.create(dto);
         return  ResponseEntity.ok().body(user);

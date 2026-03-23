@@ -9,6 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface DataRepository extends JpaRepository<DataEntity, Long> {
-    public Optional<DataEntity> findById(UUID id);
-    public void deleteById(UUID id);
+    public DataEntity findByWebsiteName(String websiteName);
 }
