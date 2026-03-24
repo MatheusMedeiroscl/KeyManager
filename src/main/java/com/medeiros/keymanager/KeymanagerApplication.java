@@ -9,18 +9,10 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
+@SpringBootApplication
 public class KeymanagerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(KeymanagerApplication.class, args);
-
-		System.out.println("USER ENTITY CARREGADA");
 	}
-
-
-	@Bean
-	public PasswordEncoder getPassEncoder(){return new BCryptPasswordEncoder();};
-
-
 }
